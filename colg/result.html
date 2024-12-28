@@ -1,0 +1,361 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="https://collegeportal.umyu.edu.ng/ug/images/logo.png">
+  <title></title>
+  <link rel="stylesheet" href="{% static "/font-awesome.min.css" %}">
+  <link rel="stylesheet" href="{% static "./files/sidebar-menu.css"%}">
+  <!-- Bootstrap core CSS -->
+  <link href="{% static "./files/bootstrap.min.css"%}" rel="stylesheet">
+
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <link href="{% static "./files/ie10-viewport-bug-workaround.css"%}" rel="stylesheet">
+  <link href="{% static "./files/custom.css"%}" rel="stylesheet" type="text/css">
+  <link href="{% static "./files/green.css"%}" rel="stylesheet" type="text/css">
+  <!-- Custom styles for this template -->
+  <link href="{% static "./files/dashboard.css"%}" rel="stylesheet">
+
+  <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+  <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+  <script src="{% static "./files/ie-emulation-modes-warning.js.download"%}"></script>
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  <script src="{% static "./files/jquery.js.download"%}" type="text/javascript"></script>
+
+  <style>
+    .navbar-default {
+      background-color: #0d6612;
+      color: #FFF;
+    }
+
+    .navbar-brand,
+    .navbar>.container-fluid .navbar-brand {
+      color: #FFF;
+    }
+
+    .navbar-default .navbar-nav>li>a {
+      color: #FFF;
+    }
+
+    @media (max-width: 767px) bootstrap.min.css:5 .navbar-default .navbar-nav .open .dropdown-menu>li>a {
+      color: #FFF;
+    }
+
+    .sidebar-menu li.sidebar-header {
+      padding: 10px 25px 10px 15px;
+      font-size: 12px;
+      color: #FFF;
+      background: #0d6612;
+    }
+
+    .sidebar-menu>li:hover>a,
+    .sidebar-menu>li.active>a {
+      color: #fff;
+      background: #0d6612;
+
+    }
+
+    .sidebar-menu .sidebar-submenu>li>a {
+      color: #FFF;
+    }
+
+    .sidebar-menu .sidebar-submenu {
+      background: #3ad34a;
+    }
+
+    .sidebar-menu {
+      background-color: #1b591f;
+    }
+
+    .list-group-item {
+      padding: 3px 3px;
+    }
+
+    .placeholders {
+      text-align: left;
+    }
+  </style>
+
+
+
+</head>
+
+<body style="">
+
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+          aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <img style="float: left; height:40px; padding-right:20px;" src="{% static "./image/logo.jpg" %}">
+        <a class="navbar-brand" href="/">
+
+          <strong>GIAL STUDENT PORTAL</strong></a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <!--  <li>
+          <a href="home">
+          <i class="active"></i> <span>Dashboard</span>  
+                </a>
+             </li>-->
+
+          <li class="dropdown">
+            <a href="profile" class="dropdown-toggle"
+              data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              My Profile<span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+               <li><a href="student"> Edit Profile</a></li>
+               <li class=""><a href="student"> Print Profile
+                  Details</a>
+              </li>
+            </ul>
+          </li>
+
+
+          <li class="dropdown">
+            <a href="profile" class="dropdown-toggle"
+              data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+
+              Result
+              <span class="caret"></span></a>
+
+            <ul class="dropdown-menu">
+              <li><a target="_blank" href="result">Print Result
+                </a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="payment" class="dropdown-toggle"
+              data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              Payment Manager
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="payment"> Make Payment
+                  Fees</a></li>
+              <li><a href="payment"> Make Other Fees</a>
+              </li>
+              <li><a href="payment"> Payment
+                  History</a></li>
+              <li><a href="payment">Payment
+                  Support</a></li>
+            </ul>
+          </li>
+
+
+
+          <li class="dropdown">
+            <a href="course" class="dropdown-toggle"
+              data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              Course Registration <span class="caret"></span>
+
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="course"> Registration History</a></li>
+            </ul>
+          </li>
+
+          <li class="dropdown">
+            <a href="examcard" class="dropdown-toggle"
+              data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              Exam Card<span class="caret"></span>
+
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="examcard">
+                  Print Exam Card</a></li>
+
+
+            </ul>
+          </li>
+
+          <li>
+            <a href="login">
+              <i class="active"></i> <span>Log Out</span>
+            </a>
+          </li>
+        </ul>
+
+      </div><!--/.nav-collapse -->
+    </div>
+  </nav>
+
+ 
+
+  <div class="container-fluid">
+    <div class="row">
+
+      <div style="padding: 0px;" class="col-sm-3 col-md-2 sidebar">
+        
+        <div style="min-height: 300px; padding-left: 5px; padding-top: 5px;">
+          <center>
+            <img style="width:120px; height:120px;" src={{ img.passport.url }} >
+            </center> <br>
+          
+          {% for info in user_program %}
+          <ul class="list-group">
+            <li class="list-group-item"><strong>Full name: </strong> {{info.name}}</li>
+             <li class="list-group-item"><strong>Programme: </strong> ND {{info.department}}</li>
+            <li class="list-group-item"><strong>Department: </strong> {{info.department}}</li>
+            <li class="list-group-item"><strong>Session: </strong> {{info.session}}</li>
+            </ul>
+            {% endfor %}
+        </div>
+      </div>
+
+      <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        {% for info in user_program %}
+        <h4 class="page-header">
+          <strong>Matric No {{info.regNo}}</strong> <br>
+          <strong>Current Session : {{info.session}}</strong>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <img style="width:120px; height:120px;" src={{ img.passport.url }} >
+            
+        </h4>
+        {% endfor %}
+        <div class="row placeholders">
+          <div class="col-sm-10">
+            <div class="block-flat profile-info">
+              <div class="row">
+                <div class="header">
+                  <div class="alert alert-success alert-dismissible fade in" role="alert">
+                    <h3>Students Result</h3>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-10">
+
+
+
+
+                    <table class="table table-striped">
+                      <tbody class="no-border-x no-border-y">
+                        <tr>
+                          {% for info in user_program %}
+                          <td nowrap="nowrap"><strong>Matric No</strong></td>
+                          <td>{{info.regNo}}</td>
+                          <td><strong>Surname</strong></td>
+                          <td>{{info.name}}</td>
+                          {% endfor %}
+                        </tr>
+                        <tr>
+                          {% for info in user_program %}
+                          <td><strong>Programme:</strong></td>
+                          <td>{{info.department}}</td>
+                          <td><strong>Department:</strong></td>
+                          <td>{{info.department}}</td>
+                          {% endfor %}
+                        </tr>
+                        <tr>
+                          {% for info in user_program %}
+                          <td><strong>Level:</strong></td>
+                          <td>{{info.session}}</td>
+
+                          <td><strong>Field of Study:</strong></td>
+                          <td colspan="3">Health Science</td>
+                          {% endfor %}
+                        </tr>
+
+                      </tbody>
+                    </table>
+
+                  </div>
+                </div>
+                <div class="col-sm-8">
+
+                  <table class="table table-striped">
+
+                    <tbody>
+                        <td>1</td>
+                        <td><a href="#result">
+                            [Print First semester 100 level Result]
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>2</td>
+                        <td><a href="#result">
+                            [Print Second semester 100 level Result]
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>3</td>
+                        <td><a href="#result">
+                            [Print First semester 200 level Result]
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>4</td>
+                        <td><a href="#result">
+                            [Print Second semester 200 level Result]
+                          </a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+       
+        <div style="clear:both;"></div>
+
+
+
+
+        <script src="{% static "./files/custom.js.download"%}" type="text/javascript"></script>
+
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap core JavaScript
+    ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <!--<script src="https://collegeportal.umyu.edu.ng/ug/dash_files/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="https://collegeportal.umyu.edu.ng/ug/bootstrap/js/vendor/jquery.min.js"><\/script>')</script>-->
+  <script src="{% static "./files/bootstrap.min.js.download"%}"></script>
+  <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+  <script src="{% static "./files/holder.min.js.download"%}"></script>
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <script src="{% static "./files/ie10-viewport-bug-workaround.js.download"%}"></script>
+
+  <script src="{% static "./files/sidebar-menu.js.download"%}"></script>
+  <script>
+    $.sidebarMenu($('.sidebar-menu'))
+  </script>
+  <link href="{% static "./files/dcalendar.picker.css"%}" rel="stylesheet" type="text/css">
+  <script src="{% static "./files/dcalendar.picker.js.download"%}"></script>
+  <script>
+    $('#demo').dcalendarpicker();
+    $('#dob').dcalendarpicker();
+    $('#calendar-demo').dcalendar(); //creates the calendar
+  </script>
+
+</body>
+
+</html>

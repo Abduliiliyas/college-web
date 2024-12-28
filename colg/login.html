@@ -1,0 +1,366 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="description" content="The Gokul Global University at Sidhpur provide one of the earliest form of technical studies, which has been vital in setting up the standard of brilliance.">
+    <meta name="keywords" content="Gokul Global University,Collage">
+    <meta name="author" content="Jaydipsinh Solanki">
+
+    <title>GOBARAU COLLEGE</title>
+    
+    <link rel="stylesheet" href=" {% static 'css/main_style.css' %}">
+    <link rel="stylesheet" href=" {% static 'css/footer.css' %}">
+    <link rel="stylesheet" href=" {% static 'css/slider.css' %}">
+    <link rel="stylesheet" href=" {% static 'css/log.css' %}">
+    <link rel="shortcut icon" href="{% static 'image/logo.jpg' %}" type="image/svg+xml">
+</head>
+<body>
+<div id="id01" style="display: initial;" class="modal">
+  
+    <form method="POST"  class="modal-content animate" action="{% url 'login' %}" enctype="multipart/form-data">
+      {% csrf_token %} 
+        <div class="imgcontainer">
+      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <img src="{% static 'image/logo.jpg' %}" alt="Avatar" class="avatar">
+    </div>
+    <center><H3>STUDENTS LOGIN</H3></center>
+    <div class="container">
+      <label for="uname"><b>Username</b></label>
+      <input type="text" placeholder="Enter Username" onfocus="document.getElementById('erm').style.display='none'" name="uname" id="uname" required>
+
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" id="lpsw" name="lpsw" onfocus="document.getElementById('erm').style.display='none'" required>
+        <span id="erm" style="color: red; font-size: smaller;">incorrect username or password !!!</span>
+      <button type="submit">Login</button>
+      <label> Don't have account 
+       <a onclick="document.getElementById('id02').style.display='block'; document.getElementById('id01').style.display='none'" style="color: royalblue;">Register</a>
+    </label>
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+      <span class="psw">Forgot <a href="#">password?</a></span>
+    </div>
+  </form>
+</div>
+
+<div id="id02" style="display: none;" class="modal">
+  
+    <form method="POST"  id="regform" class="modal-content animate" onsubmit="reset();" enctype="multipart/form-data">
+        {% csrf_token %} 
+        <div class="imgcontainer">
+        <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+        <img src="{% static 'image/logo.jpg' %}" alt="Avatar" class="avatar">
+      </div>
+  <center><H3>STUDENTS REGISTRATION</H3></center>
+      <div class="container">
+        <label for="uname"><b>Registration Number</b></label>
+        <input type="text" placeholder="Enter reg. no." name="username" id="username" onchange="usernamevalue()" required>
+        <br>
+        <span id="umsg" style="display: none; font-size: x-small; color: red;">Incorrect!!! try eg g24mlt001</span>
+        <span id="dtcheck" style="display: none;">{{uploadedregno}}</span> <br>
+        <label for="email"><b>Email address</b></label>
+        <input type="email" placeholder="Enter Email" name="email" id="email" required>
+        <br>
+        <label for="psw"><b>Password</b></label>
+        <input type="password" onchange="document.getElementById('cmsg').style.display='none'" placeholder="Enter Password" name="psw" id="psw" required>
+        <br>
+        <label for="confirm"><b> Confirm Password</b></label>
+        <input type="password" onchange="document.getElementById('cmsg').style.display='none'" placeholder="Confirm Password" name="confirm" id="confirm" required>
+          <span id="cmsg" style="color: red; font-size: x-small; display: none;">password not martch!!</span>
+        <button id="bregister" type="submit" onclick="checkp()">Register</button>
+        <label>Already have account
+          <a onclick="document.getElementById('id01').style.display='block'; document.getElementById('id02').style.display='none'" style="color: royalblue;">Login</a>
+        </label>
+      </div>
+  
+      <div class="container" style="background-color:#f1f1f1">
+        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+       </div>
+    </form>
+  </div>
+  <script>
+    function usernamevalue(){
+      document.getElementById('umsg').style.display='none'
+      dtcheck = document.getElementById('dtcheck').innerHTML
+      username= document.getElementById('username').value
+      check =dtcheck.includes(username)
+      if (check == false){
+        document.getElementById('umsg').style.display='initial'
+        document.getElementById('username').value=''
+      }
+      console.log(check)
+    }
+function checkp(){
+  username=document.getElementById('username').value
+  email=document.getElementById('email').value
+  p1= document.getElementById('psw').value
+  p2= document.getElementById('confirm').value
+  button= document.getElementById('bregister')
+  if (p1 ==p2 && username !='' && email != '' )  {
+document.getElementById('regform').submit()
+rform= document.getElementById('regform').setAttribute('action',"{% url 'register' %}")
+  }
+  else{
+    document.getElementById('cmsg').style.display='initial';
+  }
+}
+  </script>
+    <section class="header">
+        <nav>
+    <a href="{% static 'index.html '%}"><img src="{% static 'image/logo.jpg' %}" id="logo-img"></a>
+
+            <div class="nav-links" id="navLinks">
+
+                <span class="icon" onclick="hidemenu()"> &#10005;</span>
+                <ul>
+                    <li><a href="">Home</a></li>
+                    <li><a href="application">Application</a></li>
+                    <li><a  onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Student Login</a></li>
+                    <li><a href="contact">Contact</a></li>
+                </ul>
+            </div> 
+            <span class="icon" onclick="showmenu()">&#9776;</span>
+        </nav>
+       
+        <div class="text-box">
+            <h1>GIAL COLLEGE OF HEALTH TECHNOLOGY AND ENVIRONMENTAL SCIENCES</h1>
+            <p>The Gial college provide one of the excellent form of health studies situated in katsina state,<br>which has been vital in setting up the standard of brilliance.</p>
+            
+            <a href="{% static 'assets/Admission_page.html ' %}" class="hero-btn">Application potal</a>
+        </div>
+    </section>
+
+     <!--News and Update-->
+     <div>
+        <h3>News Updates</h3>
+
+        
+        <div class="slideshow-container">
+        
+        <div class="mySlides fade">
+          <div class="numbertext">1 / 3</div>
+          <img src="{% static 'image/hostel.jfif ' %}" style="width:100%">
+          <div class="text">Caption Text</div>
+        </div>
+        
+        <div class="mySlides fade">
+          <div class="numbertext">2 / 3</div>
+          <img src="{% static 'image/logo.jpg' %}" style="width:100%">
+          <div class="text">Caption Two</div>
+        </div>
+        
+        <div class="mySlides fade">
+          <div class="numbertext">3 / 3</div>
+          <img src="{% static 'image/hostel.jfif' %}" style="width:100%">
+          <div class="text">Caption Three</div>
+        </div>
+        
+        <div class="mySlides fade">
+            <div class="numbertext">3 / 3</div>
+            <img src="{% static 'image/hostel.jfif' %}" style="width:100%">
+            <div class="text">Caption Three</div>
+          </div>
+          <br>
+
+          <div style="text-align:center">
+            <span class="dot"></span> 
+            <span class="dot"></span> 
+            <span class="dot"></span> 
+            <span class="dot"></span>
+          </div>
+          <script>
+            let slideIndex = 0;
+            let imgName=1
+            showSlides();
+            
+            function showSlides() {
+              let i;
+              
+              let slides = document.getElementsByClassName("slideshow-container");
+              
+              slides.style.backgroundImage = "url('image/logo.jpg')" ;
+              let dots = document.getElementsByClassName("dot");
+             imgName++
+              slideIndex++;
+              if (slideIndex > slides.length) {slideIndex = 1}    
+              for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+              }
+              slides.style.display = "block";  
+              dots[slideIndex-1].className += " active";
+              setTimeout(showSlides, 4000); // Change image every 2 seconds
+            }
+            </script>
+        </div>
+        <br>
+        
+         
+        </div>
+    <!--Course of Collage-->
+
+
+    <section class="course" id="course_call">
+        <h1>Course We Offer</h1>
+        <p>We are offering various courses in the field health, ranging from: </p>
+
+        <div class="row">
+            <div class="course-col">
+                <h2>ND {{courses1.courseName}}</h2>
+                <p>The Senior Community Health Extension Worker (SCHEW) is a full time three years (six semesters) National Diploma course </p>
+            </div>
+
+            <div class="course-col">
+                <h2>ND HIM</h2>
+                <p>Health Information Management (HIM) is a full time BSc (Bachelor of Science) in IT is basically about storing, processing, securing, and managing information. This degree is primarily focused on subjects such as software, databases, and networking. </p>
+            </div>
+
+            <div class="course-col">
+                <h2>ND PBT </h2>
+                <p>The Bachelor of Science in (CS & IT) is an undergraduate degree course in computer applications for a duration of 3 years. The field relates to design, development and use of computer applications. </p>
+            </div>
+            <div class="course-col">
+                <h2>ND MLT </h2>
+                <p>The Bachelor of Science in (CS & IT) is an undergraduate degree course in computer applications for a duration of 3 years. The field relates to design, development and use of computer applications. </p>
+            </div>
+            <div class="course-col">
+                <h2>ND PHT </h2>
+                <p>The Bachelor of Science in (CS & IT) is an undergraduate degree course in computer applications for a duration of 3 years. The field relates to design, development and use of computer applications. </p>
+            </div>
+        </div>
+    </section>
+
+    <!--Campus Section-->
+
+    <section class="campus">
+        <h1> Our Campus</h1>
+        <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam quisquam atque non voluptate</p> -->
+
+            <div class="row">
+                <div class="campus-col">
+                    <img src="{% static 'image/cm1.jfif ' % }" alt="">
+                    <div class="layer">
+                        <h3>Environment</h3>
+                    </div>
+                </div>
+
+                <div class="campus-col">
+                    <img src="{% static 'image/cm2.jfif ' % }" alt="">
+                    <div class="layer">
+                        <h3>Community</h3>
+                    </div>
+                </div>
+
+                <div class="campus-col">
+                    <img src="{% static 'image/cm3.jfif ' % }" alt="">
+                    <div class="layer">
+                        <h3>Education</h3>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <!--Facilities Section-->
+
+    <section class="facilities">
+        <h1> Our facilities</h1>
+        <p>Facilities provide for Students by Gokul Global University</p>
+
+        <div class="row">
+            <div class="facilities-col">
+                <img src="{% static 'image/canteen.jfif' %}" alt="">
+                <h3>Canteen</h3>
+                <p>The objective of the Canteen and meal service is to protect by reducing the risk of foodborne illness, with proper sanitary conditions.</p>
+            </div>
+
+            <div class="facilities-col">
+                <img src="{ % static 'image/auditorium.jfif' %}" alt="">
+                <h3>Auditorium</h3>
+                <p>The college is having a huge indoor auditorium with a professionally-deployed acoustic system and a seating capacity of about 200 people.</p>
+            </div>
+
+            <div class="facilities-col">
+                <img src="{% static 'image/hostel.jfif' %}" alt="">
+                <h3>Hostel</h3>
+                <p>hostel consists of a separate mess, administrative office, warden quarter. In addition to well furnished rooms.</p>
+            </div>
+        </div>
+        </section>
+ <!--Desclaimer Section-->
+
+ <section class="facilities">
+    <h1> DESCLAIMER</h1>
+    <div class="row">
+        <div class="facilities-col">
+            <img src="{% static 'image/proprietor.jpg' %}" alt="">
+            <h3>PROPRIETOR</h3>
+            <p>Honoroble Hamisu Gambo Danlawan Katsina</p>
+        </div>
+
+        <div class="facilities-col">
+            <img src="{% static 'image/provost.jpg' %}" alt="">
+            <h3>PROVOST</h3>
+            <p>Ibrahim Abdulrahman</p>
+        </div>
+
+        <div class="facilities-col">
+            <img src="{% static 'image/registrar.jpg' %}" alt="">
+            <h3>REGISTRAR</h3>
+            <p>Aminu Rabiu Muhammad</p>
+        </div>
+    </div>
+</section>
+<hr> <br> <br>
+
+  <!-- Footer Section -->
+  <footer>
+    <div class="footer-container">
+      <!-- Social Media Icons -->
+      <div class="social-media">
+        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+
+      <!-- Copyright Text -->
+      <center> <div class="copyright">
+        <p>&copy; 2024 Your Company. All rights reserved.</p>
+      </div>
+    </div></center>
+  </footer>
+
+  <!-- Font Awesome CDN for Social Icons -->
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  <script>
+    // Get the modal
+    var modal = document.getElementById('id01');
+    var modal2 = document.getElementById('id02');
+    
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+            modal2.style.display = "none";
+        }
+    }
+    </script>
+        <script>
+          window.onpageshow = function(event){
+              if (event.persisted){window.location.reload()}
+          }
+      
+      </script>
+</body>
+</html>
+
+
+    <!--Javascript is Start-->
+    <script src="{% static 'javascript/main_script.js ' %}"></script>
+</body>
+
+    
+    
+</html>

@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gial News Update</title>
+</head>
+<body>
+    {% for i in info %}
+    <div>
+        <h2> {{ i.heading }}</h2>
+        <p>
+            {{ i.date }} <br>
+            <img src="{{ i.picture.url }}" width="90%" height="90%" alt="">
+        </p>
+        <p style="color: dimgray;">{{i.content}}</p>
+    </div>
+    <hr>
+    {% endfor %}
+</body>
+</html>

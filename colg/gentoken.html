@@ -1,0 +1,335 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+
+    <title>TOKEN</title>
+    <link rel="shortcut icon" href="{% static 'image/logo.jpg' %}" type="image/svg+xml">
+    <link rel="stylesheet" href=" {% static 'css/main_style.css' %}">
+    <link rel="stylesheet" href=" {% static 'css/footer.css' %}">
+    <link rel="stylesheet" href=" {% static 'css/slider.css' %}">
+    <link rel="stylesheet" href=" {% static 'css/log.css' %}">
+    <link rel="shortcut icon" href="{% static 'image/logo.jpg' %}" type="image/svg+xml">
+    <style>
+        body {font-family: Arial, Helvetica, sans-serif;}
+
+/* Full-width input fields */
+input[type=text], input[type=password],input[type=number] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+}
+
+/* Center the image and position the close button */
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+  position: relative;
+}
+
+img.avatar {
+  width: 40%;
+  border-radius: 50%;
+}
+
+.container {
+  padding: 16px;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  padding-top: 60px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #888;
+  width: 30%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button (x) */
+.close {
+  position: absolute;
+  right: 25px;
+  top: 0;
+  color: #000;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: red;
+  cursor: pointer;
+}
+
+/* Add Zoom Animation */
+.animate {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+  from {-webkit-transform: scale(0)} 
+  to {-webkit-transform: scale(1)}
+}
+  
+@keyframes animatezoom {
+  from {transform: scale(0)} 
+  to {transform: scale(1)}
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+     display: block;
+     float: none;
+  }
+  .cancelbtn {
+     width: 100%;
+  }
+}
+.course{
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    padding-top: 100px;
+}
+h1{
+    font-size: 36px;
+    font-weight: 300;
+}
+p{
+    color:#777;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 22px;
+    padding: 10px;
+}
+.row{
+    margin-top: 5%;
+    display: flex;
+    justify-content: space-between;
+}
+.course-col{
+    flex-basis: 31%;
+    background: #fff3f3;
+    border-radius: 10px;
+    margin-bottom:5%;
+    padding: 20px 12px;
+    box-sizing: border-box;
+    transition: 0.5s;
+}
+h3{
+    text-align: center;
+    font-weight: 600;
+    margin: 10px 0px;
+}
+.course-col:hover{
+    box-shadow: 10px 10px 24px 0px rgba(0,0,0,0.4);
+}
+
+table {
+            border-collapse: collapse;
+            width: 50%;
+            margin: 20px auto;
+            text-align: left;
+        }
+        td{
+         padding: 8px;   
+        }
+        
+        tr {
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+<div id="id01" style="display: initial;" class="modal">
+   <section class="course" id="course_call">
+        <div class="row">
+          <div class="course-col" onclick="document.getElementById('id02').style.display='initial'">
+            <h4>Generate token</h4>
+            <p>Generate token</p>
+        </div>
+            <div class="course-col" onclick="document.getElementById('id03').style.display='initial'; document.getElementById('id04').style.display='none'">
+                <h4>Available token</h4>
+                <p>List of available token  &nbsp; &nbsp; 
+                  <span id="tokenavai"><b>0</b></span></p>
+            </div>
+
+            <div class="course-col" onclick="document.getElementById('id04').style.display='initial'; document.getElementById('id03').style.display='none'">
+                <h4>Used token</h4>
+                <p>List of used token &nbsp; &nbsp; 
+                  <span id="tokenused"> 0</span></p>
+            </div>
+        </div>
+    </section>
+    <section   >
+      <div id="id02" class="modal" style="display: none;">
+      <center>
+          <form method="POST"  id="regform" action="{% url 'gentoken' %}" class="modal-content animate" enctype="multipart/form-data">
+            {% csrf_token %} 
+          <div class="container">
+            <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+            <input type="number" placeholder="number of token" name="tokenNo" id="tokenNo" required>
+            <input id="dt" name="dt" type="datetime" style="display: none;">
+            <br>
+            <button id="gent" onclick="document.getElementById('dt').value=new Date()" type="submit">Generate</button>
+            
+          </div>
+        </form>
+</center>
+</div>
+<script>
+  onload
+</script>
+  </section>
+  <section   >
+    <div id="id03" style="display: none;">
+    <center>
+      <table id="avai">
+        <tr style="height: 10px;">
+          <th>NUMBERS</th>
+          <th>DATE GENERATED</th>
+      </tr>
+        {% for tk in reToken%}
+        <tr class="tkr">
+            <th>{{tk.tokenNo}}</th>
+            <th>{{tk.date}}</th>
+        </tr> <br> <br> <br>
+        {% endfor %}
+        <tr>
+          <td><button onclick="toPrint()">Print</button></td>
+        </tr>
+    </table>
+</center>
+
+</div>
+</section>
+<script>
+  function toPrint(){
+    tb=document.getElementById('avai')
+    newWin = window.open('')
+    newWin.document.write(tb.outerHTML)
+    newWin.print()
+    newWin.close()
+  }
+</script>
+<section   >
+  <div id="id04" style="display: none;">
+  <center>
+    <table>
+      <tr>
+          <th>Column 1</th>
+          <th>Column 2</th>
+      </tr>
+      <tr>
+          <td>Registration Number</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>Full Name</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>Department</td>
+          <td>Row 3, Col 2</td>
+      </tr>
+      <tr>
+          <td>Programme</td>
+          <td>Row 4, Col 2</td>
+      </tr>
+      <tr>
+          <td>Level</td>
+          <td>Row 5, Col 2</td>
+      </tr>
+      <tr>
+          <td>Session/Semester</td>
+          <td>Row 6, Col 2</td>
+      </tr>
+      <tr>
+          <td>Row 7, Col 1</td>
+          <td>Row 7, Col 2</td>
+      </tr>
+  </table>
+</center>
+</div>
+</section>
+
+</div>
+
+  <!-- Font Awesome CDN for Social Icons -->
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  <script>
+    // Get the modal
+    var modal = document.getElementById('id01');
+    var modal2 = document.getElementById('id02');
+    
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal2.style.display = "none";
+        }
+    }
+    </script>
+        <script>
+          window.onpageshow = function(event){
+              if (event.persisted){window.location.reload()}
+          }
+      
+      </script>
+</body>
+</html>
+
+
+    <!--Javascript is Start-->
+    <script src="{% static 'javascript/main_script.js ' %}"></script>
+</body>
+
+    
+    
+</html>

@@ -1,0 +1,213 @@
+{% load static %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <title>GIAL , Katsina. : exam card</title>
+  <style type="text/css">
+
+  </style>
+  <script>
+    function printWindow() {
+      bV = parseInt(navigator.appVersion)
+      if (bV >= 4) window.print()
+    }
+  </script>
+  <script language="javascript">
+
+
+  </script>
+</head>
+
+<body onload="KW_doClock();">
+  <table width="750" border="0" align="center" cellpadding="0" class="border">
+    <tbody>
+      <tr>
+        <td>
+          <table width="75%" border="0" cellspacing="0">
+            <tbody>
+              <tr>
+                <td width="18%" align="center" valign="center"><img width="90px" height="90px" border="0"
+                    src=" {% static './image/logo.jpg' %}"></td>
+
+                <td width="82%" align="center" valign="center">
+                  <p><strong style="font-size:18px; color: #01913b; font-family: times new roman;">GIAL COLLEGE OF HEALTH TECHNOLOGY AND ENVIRONMENTAL SCIENCES</strong> <br>
+                    <strong></strong><br>
+                    <!-- <strong>OFFICE OF THE REGISTRAR</strong><br>
+          <strong>ACADEMIC DIVISION</strong><br>-->
+                    <strong><em>EXAM CARD </em></strong>
+                  </p>
+                </td>
+
+              </tr>
+
+
+            </tbody>
+          </table>
+
+
+
+
+
+          <div class="content">
+            <div class="table-responsive">
+              <table width="95%" border="0" align="center" cellpadding="2" cellspacing="0" id="text"
+                class="table table-bordered">
+
+                <tbody>
+                  <tr>
+                    <td align="center" colspan="4">
+                      <p style=" padding-left:0px; font-size:12px; margin-top:0; background-color: #E0EFE0;">
+                        <b><u>STUDENT'S PARTICULARS</u></b>
+                      </p>
+                    </td>
+
+
+                  </tr>
+
+                  <tr id="textdataheader">
+                    {% for info in user_program %}
+
+                    <td width="27%">SESSION:</td>
+                    <td width="45%"><span class="style6">
+                        {{info.session}}
+                      </span>
+                    </td>
+                    {% endfor %}
+                  
+                  </tr>
+                  <tr>
+                    {% for info in user_program %}
+                    <td>FULL NAME:</td>
+                    <td><span class="style6">{{info.name }}</span></td>
+                    {% endfor %}
+                    <td width="28%" rowspan="4">
+                      <img style="width:90px;height:90px;" src="{{ img.passport.url }}">
+                    </td>
+                    
+                  </tr>
+
+                  <tr>
+                    {% for info in user_info %}
+                    <td id="textdataheader">MATRIC NUMBER : </td>
+                    <td>
+                      <span class="style6">{{ info.regNo}}</span>
+                    </td>
+                    {% endfor %}
+                  </tr>
+
+                  <tr id="textdataheader">
+                    {% for info in user_program %}
+                    <td><strong>DEPARTMENT:</strong></td>
+                    <td><b>{{info.department}} </b></td>
+                    {% endfor %}
+                  </tr>
+                  <tr id="textdataheader">
+                    {% for info in user_program %}
+                    <td><strong>COURSE OF STUDY:</strong></td>
+                    <td><b>ND {{info.department}}</b></td>
+                    {% endfor %}
+                  </tr>
+                  <tr id="textdataheader">
+                    <td><strong>LEVEL:</strong></td>
+                    <td><b>{{ level }}</b></td>
+                    <style>
+                      /*  table tr:nth-child(even) {
+background-color: #fff;
+color: #000;
+border:  #fff solid ;
+padding: 1px;
+}
+
+table tr:nth-child(odd) {
+color: #000;
+//background-color: #E0EFE0;
+padding: 1px;
+}
+
+thead {
+
+text-align: left;
+background-color: #174D11;
+color: #fff;
+border: 1px solid #98bf21;
+
+}
+   */
+                    </style>
+
+                  </tr>
+                  <tr>
+                    <td align="center" colspan="4">
+                      <p style=" padding-left:0px; font-size:12px; margin-top:0; background-color: #E0EFE0;">
+                        <b><u><strong></strong></u></b>
+                      </p>
+                    </td>
+
+
+                  </tr>
+                </tbody>
+              </table>
+
+
+              <table width="100%" border="1" align="center" cellpadding="0" cellspacing="0"
+                style="font-size:12px;border-collapse: collapse;">
+
+
+                <thead>
+                  <tr>
+                    <th colspan="7"><b><strong> {{semester}} SEMESTER</strong></b></th>
+
+                  </tr>
+                </thead>
+
+
+
+                <tbody>
+                  <tr align="center">
+                    <th width="10%&quot;"><strong>S/N</strong></th>
+                    <!--<th><b>Room Number</b></th>-->
+
+                    <th width="10%" ><strong>Course Code</strong></th>
+                    <th width="50%"><strong>Course Title</strong></th>
+                    <th width="10%&quot;" align="center"><strong>Unit</strong></th>
+                    <th width="20%&quot;" align="center"><strong>Sign</strong></th>
+                  </tr>
+                </tbody>
+                <tbody>
+                  <!--- <tr align="center">
+    <td>(a)</td><td>(b)</td><td>(c)</td><td>(d)</td><td>(e)</td><td>(f)</td> </tr>--->
+
+
+                    {% for reg in reg_courses %}
+                  <tr>
+                    <td align="center">{{ reg.id}}</td>
+
+                    <td align="center">{{ reg.courseCode }}</td>
+                    <td style="padding-left: 20px;">{{ reg.courseName }}</td>
+
+                    <td align="center">{{ reg.courseUnit }}
+                    </td>
+                    <td align="center">
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+
+              <br><br>
+    
+            </div>
+          </div>
+
+
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+
+</html>

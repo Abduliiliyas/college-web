@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - GGU</title>
+    <link rel="shortcut icon" href="{% static 'image/favicon.ico' %}" type="image/svg+xml">
+   <link rel="stylesheet" href="{% static 'css/contact_style.css' %}">
+   <link rel="stylesheet" href="{% static 'css/login.css' %}">
+</head>
+<body>
+    <section class="header">
+
+        <div class="wrapper">
+		<div class="r_form_wrap">
+			
+			<div class="title">
+				<div class="imgcontainer">
+					<a href="allNews"><span class="close" title="Close Modal">&times;</span></a>
+					<img src="{% static 'image/1.jpg' %}" alt="Avatar" class="avatar">
+				<p style="color: #36BB8A; font-family: 'Times New Roman', Times, serif;">Contact form</p>
+			</div>
+		</div>
+			<!-- contact from -->
+			<div class="r_form">
+				<form method="POST" action="{% url 'submitcontact' %}" enctype="multipart/form-data" onsubmit="reset();">
+					{% csrf_token %}
+						<div class="input_wrap">
+						<label for="yourname">Your Name <span style="color: red;">*</span></label>
+						<div class="input_item">
+							<i class="fa fa-user" id="icon"></i>
+							<input type="text" name="cname" class="input" id="cname" placeholder="Enter the name" required>
+						</div>
+					</div>
+					<div class="input_wrap">
+						<label for="emailaddress">Email Address <span style="color: red;">*</span></label>
+						<div class="input_item">
+							<i class="fa fa-envelope" id="icon"></i>
+							<input type="email" name="cemail" class="input" id="cemail" placeholder="Enter the Email ID" required>
+						</div>
+					</div>
+
+					<div class="input_wrap">
+						<label for="phone">Message <span style="color: red;">*</span></label>
+						<div class="input_item">
+							<i class="fa fa-commenting" id="icon"></i>
+                            <textarea name="cmessage" class="mess" id="cmessage" placeholder="Write your message..." size="500"></textarea>
+						</div>
+					</div>
+					
+	
+					<input type="submit" class="button" value="Send Message">
+					<div ></div>
+					<input type="reset" class="clear_ad" value="Clear">
+					
+				</form>
+			</div>
+        </div>
+        </div>
+    </section>
+
+    <div class="none_div"></div>
+   
+
+    
+</body>
+
+</html>

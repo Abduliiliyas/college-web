@@ -1,0 +1,157 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="description" content="The Gokul Global University at Sidhpur provide one of the earliest form of technical studies, which has been vital in setting up the standard of brilliance.">
+    <meta name="keywords" content="Gokul Global University,Collage">
+    <meta name="author" content="Jaydipsinh Solanki">
+
+    <title>student login</title>
+    
+    <link rel="stylesheet" href=" {% static 'css/main_style.css' %}">
+    <link rel="stylesheet" href=" {% static 'css/footer.css' %}">
+    <link rel="stylesheet" href=" {% static 'css/login.css' %}">
+    <link rel="shortcut icon" href="{% static 'image/logo.jpg' %}" type="image/svg+xml">
+</head>
+<body>
+  
+<div id="id01" class="modal" style="display: initial;">
+  <center><span  id="success" style="color: white; padding: 10px;">
+    {{ success }}
+  </span></center>
+    <form method="POST" class="modal-content animate" action="{% url 'login' %}" enctype="multipart/form-data">
+      {% csrf_token %} 
+        <div class="imgcontainer">
+      <a href="allNews"><span class="close" title="Close Modal">&times;</span></a>
+      <img src="{% static 'image/1.jpg' %}" alt="Avatar" class="avatar">
+    </div>
+    <center><H3>STUDENTS LOGIN</H3></center>
+    <div class="container">
+      <label for="uname"><b>Username</b></label>
+      <input type="text" oninput="document.getElementById('erm').innerText=''; document.getElementById('success').style.display='none';" placeholder="Enter Username" name="uname" id="uname" required>
+
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" oninput="document.getElementById('erm').innerText=''" id="lpsw" name="lpsw" required> <br>
+        <span></span>
+      <button type="submit">Login</button>
+      <span id="erm" style="color: red; font-size: smaller;">{{errr}}</span>
+      <br>
+      <label> Don't have account 
+       <a onclick="document.getElementById('id02').style.display='block'; document.getElementById('id01').style.display='none'" style="color: royalblue;">Register</a>
+    </label>
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+      <a href="allNews"><button type="button" class="cancelbtn">Cancel</button></a>
+       <span class="psw">Forgot <a href="#">password?</a></span>
+    </div>
+  </form>
+</div>
+
+<div id="id02" class="modal">
+  
+    <form method="POST" id="regform" class="modal-content animate" enctype="multipart/form-data">
+        {% csrf_token %} 
+        <div class="imgcontainer">
+          <a href="allNews"><span class="close" title="Close Modal">&times;</span></a>
+          <img src="{% static 'image/1.jpg' %}" alt="Avatar" class="avatar">
+      </div>
+  <center><H3>STUDENTS REGISTRATION</H3></center>
+      <div class="container">
+        <label for="uname"><b>Registration Number</b></label>
+        <input type="text" oninput="document.getElementById('cmsg').innerText=''" placeholder="Enter reg. no." name="username" id="username" onchange="usernamevalue()" required>
+        <br>
+        <span id="umsg" style="display: none; font-size: x-small; color: red;">Incorrect!!! try eg g24mlt001</span>
+        <span id="umsg" style="display: none; font-size: x-small; color: red;">This user exist </span>
+        <span id="dtcheck" style="display: none;">{{uploadedregno}}</span> <br>
+        <label for="email"><b>Email address</b></label>
+        <input type="email" oninput="document.getElementById('cmsg').innerText=''" placeholder="Enter Email" name="email" id="email" required>
+        <br>
+        <label for="psw"><b>Password</b></label>
+        <input type="password" oninput="document.getElementById('cmsg').innerText=''" onchange="document.getElementById('cmsg').style.display='none'" placeholder="Enter Password" name="psw" id="psw" required>
+        <br>
+        <label for="confirm"><b> Confirm Password</b></label>
+        <input type="password" oninput="document.getElementById('cmsg').innerText=''" onchange="document.getElementById('cmsg').style.display='none'" placeholder="Confirm Password" name="confirm" id="confirm" required>
+          <span id="cmsg" style="color: red; font-size: x-small;">{{err}}</span>
+        <button id="bregister" type="submit" onclick="checkp()">Register</button>
+        <label>Already have account
+          <a onclick="document.getElementById('id01').style.display='block'; document.getElementById('id02').style.display='none'" style="color: royalblue;">Login</a>
+        </label>
+      </div>
+  
+      <div class="container" style="background-color:#f1f1f1">
+        <a href="allNews"><button type="button" class="cancelbtn">Cancel</button></a>
+       </div>
+    </form>
+  </div>
+  <script>
+      errorcheck = document.getElementById('erm').innerText
+      check =errorcheck.includes('incorrect')
+      if (check == false){
+        document.getElementById('erm').innerText=''
+      }
+      errorcheckR = document.getElementById('cmsg').innerText
+      checkR1 =errorcheckR.includes('already')
+      checkR2 =errorcheckR.includes('password')
+      if (checkR1 == false && checkR2 == false){
+        document.getElementById('cmsg').innerText=''
+      }
+      else{
+        console.log('check')
+        document.getElementById('id02').style.display='block'; 
+        document.getElementById('id01').style.display='none';
+      }
+    function usernamevalue(){
+      document.getElementById('umsg').style.display='none'
+      dtcheck = document.getElementById('dtcheck').innerHTML
+      username= document.getElementById('username').value
+      check =dtcheck.includes(username)
+      if (check == false){
+        document.getElementById('umsg').style.display='initial'
+        document.getElementById('username').value=''
+      }
+      
+    }
+function checkp(){
+  username=document.getElementById('username').value
+  email=document.getElementById('email').value
+  p1= document.getElementById('psw').value
+  p2= document.getElementById('confirm').value
+  button= document.getElementById('bregister')
+  if (username !='' && email != '' )  {
+document.getElementById('regform').submit()
+rform= document.getElementById('regform').setAttribute('action',"{% url 'register' %}")
+  }
+}
+  </script>
+    <section class="header">
+       
+        <div class="text-box">
+           
+        </div>
+    </section>
+     
+  <!-- Font Awesome CDN for Social Icons -->
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  <script>
+    // Get the modal
+    var modal = document.getElementById('id01');
+    var modal2 = document.getElementById('id02');
+    var modal3 = document.getElementById('id03');
+    // When the user clicks anywhere outside of the modal, close it
+
+    </script>
+  
+</body>
+</html>
+
+
+    <!--Javascript is Start-->
+    <script src="{% static 'javascript/main_script.js ' %}"></script>
+</body>
+
+    
+    
+</html>

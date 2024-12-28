@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="paymentForm">
+        <div>
+            <label for="email">Email</label>
+            <input type="email" id="email" required />
+        </div>
+        <div>
+            <label for="amount">Amount</label>
+            <input type="number" id="amount" required />
+        </div>
+        <div>
+            <button type="button" onclick="payWithPaystack()"> Pay </button>
+        </div>
+    </form>
+    
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+    <script>
+        function payWithPaystack() {
+            var handler = PaystackPop.setup({
+                key: '{{ pk_test_f7ebdcb1cde90c39dee73530298cbafeb9877725 }}', // Replace with your public key
+                email: document.getElementById('email').value,
+                amount: document.getElementById('amount').value * 100, // Convert to kobo
+                currency: 'NGN', // Set currency
+                callback: function(response) {
+                    // Payment was successful
+                    window.location.href = '/verify-payment/' + response.reference;
+                },
+                onClose: function() {
+                    alert('Transaction was not completed.');
+                },
+            });
+            handler.openIframe();
+        }
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,304 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admission form- GGU</title>
+    <link rel="stylesheet" href="{% static 'css/admission_style.css' %}">
+	<link rel="stylesheet" href="{% static 'css/login.css' %}">
+
+</head>
+<body>
+
+	<div id="id01" style="display: none;" class="modal">
+  
+		<form method="POST"  class="modal-content animate" action="{% url 'exam_slip' %}" enctype="multipart/form-data">
+		  {% csrf_token %} 
+		<center><H3 style="color:#36BB8A; font-family: 'Times New Roman', Times, serif;">Print interview slip</H3></center>
+		<div class="container">
+		  <label for="pemail"><b>App no. / email address</b></label>
+		  <input type="text" placeholder="Enter App. no /email" name="pemail" id="pemail" required>
+	
+		 <button type="submit">Print</button>
+		</div>
+	
+		<div class="container" style="background-color:#f1f1f1">
+		  <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+		 </div>
+	  </form>
+	</div>
+
+	<div id="id02" style="display: none;" class="modal">
+		<form method="POST"  class="modal-content animate" action="{% url 'application' %}" enctype="multipart/form-data">
+		  {% csrf_token %} 
+		<center><H3 style="color:#36BB8A; font-family: 'Times New Roman', Times, serif;">Buy Registration Pin</H3></center>
+		<div class="container">
+		  <label for="bemail"><b>Email Address</b></label>
+		  <input type="email" plceholder="Enter email" name="bemail" id="bemail" required>
+	
+		 <button type="submit">Buy</button>
+		</div>
+	
+		<div class="container" style="background-color:#f1f1f1">
+		  <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
+		 </div>
+	  </form>
+	</div>
+
+  <section class="header">
+	<div class="wrapper">
+		<div class="r_form_wrap">
+			
+			<div class="title">
+				<div class="imgcontainer">
+					<a href="allNews"><span class="close" title="Close Modal">&times;</span></a>
+					<img src="{% static 'image/1.jpg' %}" alt="Avatar" class="avatar">
+				</div>
+				<p style="color:#36BB8A; font-family: 'Times New Roman', Times, serif;">APPLICATION FOR ADMISSION</p>
+			</div>
+			<!-- Admission from -->
+			<div class="r_form">
+				<button style="width: 30%;" onclick="document.getElementById('id01').style.display='initial'">print slip</button>
+				<form method="POST" action="{% url 'application' %}" enctype="multipart/form-data" onsubmit="sendmail(); reset();">
+					{% csrf_token %}
+					<h4>REGISTRATION TOKEN</h4><span style="color: red;">*</span> <br>
+					<div class="input_wrap">
+						<label for="pin"></label>
+						<div class="input_item">
+							<i class="fa fa-user" id="icon"></i>
+							<input type="number" name="token" class="input" id="token" placeholder="token" required>
+						</div>
+						<a href="#buy registion pin" onclick="document.getElementById('id02').style.display='initial'" id="buy" style="color: red; font-size: smaller;">Don't have, click</a>
+					</div>
+					<h4>PERSONAL DETAILS</h4> <br>
+					<div class="input_wrap">
+						<label for="yourname">Full Name <span style="color: red;">*</span></label>
+						<div class="input_item">
+							<i class="fa fa-user" id="icon"></i>
+							<input type="text" name="yourname" class="input" id="yourname" placeholder="Enter your name" required>
+						</div>
+					</div>
+					<div class="input_wrap">
+						<label for="email">Email Address <span style="color: red;">*</span></label>
+						<div class="input_item">
+							<i class="fa fa-user" id="icon"></i>
+							<input type="email" name="email" class="input" id="email" placeholder="Enter your email" required>
+						</div>
+					</div>
+					<div class="input_wrap">
+						<label for="address">Contact Address <span style="color: red;">*</span></label>
+						<div class="input_item">
+							<i class="fa fa-envelope" id="icon"></i>
+							<input type="text" name="address" class="input" id="address" placeholder="Enter your full address" required>
+						</div>
+					</div>
+
+					<div class="input_wrap">
+						<label for="phone">Phone Number <span style="color: red;">*</span></label>
+						<div class="input_item">
+							<i class="fa fa-phone-square" id="icon"></i>
+							<input type="number" name="phone" class="input" id="phone" placeholder="Enter the Mobile number" required>
+						</div>
+					</div>
+					<div class="input_wrap">
+						<label>Gender <span style="color: red;">*</span></label>
+						<div class="input_radio">
+							<div class="input_radio_item">
+								<input type="radio" id="male" name="gender" class="radio" value="male" checked>
+								<label for="male" class="radio_mark">
+									<ion-icon class="i" name="male-sharp"></ion-icon>
+								Male</label>
+							</div>
+							<div class="input_radio_item">
+								<input type="radio" id="female" name="gender" class="radio" value="female">
+								<label for="female" class="radio_mark">
+									<ion-icon class="i" name="female-sharp"></ion-icon>
+									Female</label>
+							</div>
+						</div>
+					</div>
+					<div class="input_wrap">
+						<label>Marital Status <span style="color: red;">*</span></label>
+						<div class="input_radio">
+							<div class="input_radio_item">
+								<input type="radio" id="single" name="marital" class="radio" value="single" checked>
+								<label for="single" class="radio_mark">
+									<ion-icon class="i" name="male-sharp"></ion-icon>
+								Single</label>
+							</div>
+							<div class="input_radio_item">
+								<input type="radio" id="married" name="marital" class="radio" value="married">
+								<label for="married" class="radio_mark">
+									<ion-icon class="i" name="married"></ion-icon>
+									Married</label>
+							</div>
+						</div>
+					</div>
+					<div class="input_wrap">
+						<label for="dob">Date Of Birth <span style="color: red;">*</span></label>
+						<div class="input_item">
+							<i class="fa fa-calendar" id="icon"></i>
+							<input type="date" name="dob" class="input" id="dob" required>
+						</div>
+					</div>
+
+					<div class="input_wrap">
+						<label for="course">Course <span style="color: red;">*</span></label>
+						<div class="input_item">
+							<i class="fa fa-caret-square-o-down" aria-hidden="true"id="icon" ></i>
+					<select id="course" name="courses" id ="courses" class="input" required>
+					<option value="select"> Select the Course</option>
+					<option value="SCHEW">SCHEW 3years</option>
+					<option value="HIM">HIM 3years</option>
+					<option value="PBT">PBT 3years</option>
+					<option value="PHT">PHT 3years</option>
+					<option value="MLT">MLT 3years</option>
+					<option value="PBT">PBT 2years</option>
+					<option value="EHT">EHT 2years</option>
+					<option value="EDC">EDC 2years</option>
+					</select>
+					</div>
+					</div>
+
+					<h4>ACADEMIC DETAILS</h4> <br>
+
+					<div class="input_wrap">
+						<label for="primary">Name of your Primary School <span style="color: red;">*</span></label>
+						<div class="input_item">
+							<i class="fa fa-key" id="icon"></i>
+							<input type="text" name="primary" class="input" id="primary" placeholder="Primary" >
+						</div>
+					</div>
+					<div class="input_wrap">
+						<div class="input_item">
+							<i class="fa fa-check-circle" id="icon"></i>
+							<input type="number" name="pcopletionyear" class="input" id="pcopletionyear" placeholder="Completion Year" required>
+						</div> <br>
+					<div class="input_wrap">
+						<label for="secondary">Name of your Secondary school <span style="color: red;">*</span></label>
+						<div class="input_item">
+							<i class="fa fa-check-circle" id="icon"></i>
+							<input type="text" name="secondary" class="input" id="secondary" placeholder="Secondary">
+						</div>
+					</div>
+					<div class="input_wrap">
+						<div class="input_item">
+							<i class="fa fa-check-circle" id="icon"></i>
+							<input type="number" name="scopletionyear" class="input" id="scopletionyear" placeholder="Completion Year" required>
+						</div> <br>
+						<div class="input_wrap">
+							<div class="input_item">
+								<i class="fa fa-check-circle" id="icon"></i>
+								<input type="number" name="eyear" class="input" id="eyear" placeholder="Exam Year" required>
+							</div> <br>
+						<div class="input_wrap">
+							<label for="course">Exam Type <span style="color: red;">*</span></label>
+							<div class="input_item">
+								<i class="fa fa-caret-square-o-down" aria-hidden="true"id="icon" ></i>
+						<select id="course" name="etype" id="etype" class="input" required>
+						<option value="select"> Select the Exam</option>
+						<option value="weacIn">WAEC_Internal</option>
+						<option value="necoIn">NECO_Internal</option>
+						<option value="nabtebIN">NABTEB_Internal</option>
+						<option value="weacEx">WAEC_External</option>
+						<option value="necoEX">NECO_External</option>
+						<option value="nabtebEX">NABTEB_External</option>
+						</select>
+						</div>
+						</div> <br>
+
+						<div class="input_wrap"></div>
+							<label for="grade">Grades <span style="color: red;">*</span></label> <br>
+							<div class="input_item">
+								<b>ENGLISH</b>
+								<i class="fa fa-caret-square-o-down" aria-hidden="true"id="icon" ></i>
+						<select id="english" name="english" class="radio" required>
+						<option value="select"> Select</option>
+						<option value="A1">A1</option>
+						<option value="B2">B2</option>
+						<option value="B3">B3</option>
+						<option value="c4">C4</option>
+						<option value="C5">C5</option>
+						<option value="C6">C6</option>
+						</select> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+
+						<b>MATHEMATICS</b>
+								<i class="fa fa-caret-square-o-down" aria-hidden="true"id="icon" ></i>
+						<select id="mathematics" name="mathematics" class="radio" required>
+							<option value="select"> Select</option>
+							<option value="A1">A1</option>
+							<option value="B2">B2</option>
+							<option value="B3">B3</option>
+							<option value="c4">C4</option>
+							<option value="C5">C5</option>
+							<option value="C6">C6</option>
+						</select> <br> <br>
+
+						<b>BIOLOGY</b>
+								<i class="fa fa-caret-square-o-down" aria-hidden="true"id="icon" ></i>
+						<select id="biology" name="biology" class="radio" required>
+						<option value="select"> Select</option>
+						<option value="A1">A1</option>
+						<option value="B2">B2</option>
+						<option value="B3">B3</option>
+						<option value="c4">C4</option>
+						<option value="C5">C5</option>
+						<option value="C6">C6</option>
+						</select> &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;
+						<b>CHEMISTRY</b>
+								<i class="fa fa-caret-square-o-down" aria-hidden="true"id="icon" ></i>
+						<select id="chemistry" name="chemistry" class="radio" required>
+						<option value="select"> Select</option>
+						<option value="A1">A1</option>
+						<option value="B2">B2</option>
+						<option value="B3">B3</option>
+						<option value="c4">C4</option>
+						<option value="C5">C5</option>
+						<option value="C6">C6</option>
+						</select> <br> <br>
+						<b>PHYSICS</b>
+								<i class="fa fa-caret-square-o-down" aria-hidden="true"id="icon" ></i>
+						<select id="physics" name="physics" class="radio" required>
+						<option value="select"> Select</option>
+						<option value="A1">A1</option>
+						<option value="B2">B2</option>
+						<option value="B3">B3</option>
+						<option value="c4">C4</option>
+						<option value="C5">C5</option>
+						<option value="C6">C6</option>
+						</select> 
+						</div>
+						</div>
+
+						<div class="input_wrap">
+							
+							{% block content %}
+							<form method="POST" action="{% url 'application' %}" id="p_form" enctype="multipart/form-data">
+								<span style="color: red;">*</span>
+								{% csrf_token %}
+								{{ img }}
+								</form>
+								{% endblock %}
+								
+						</div>
+	
+					<input type="submit" onclick="document.getElementById('p_form').submit()" class="button" value="Register Now">
+					
+					<div ></div>
+					<input type="reset" class="clear_ad" value="Clear">
+					
+				</form>
+			</div>
+	
+		</div>
+	</div>
+	</section>
+	<div class="none_div">
+
+	</div>
+	</body>
+	
+</html>

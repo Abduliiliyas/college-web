@@ -1,0 +1,214 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrance Examination Slip</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            border: 2px solid #000;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            color: green;
+        }
+
+        .header h1 {
+            color: green;
+            margin: 0;
+            font-size: 24px;
+            text-transform: uppercase;
+        }
+
+        .header h2 {
+            margin: 5px 0;
+            font-size: 20px;
+            text-transform: uppercase;
+            color: #555;
+        }
+
+        .passport {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            text-align: center;
+        }
+        .logo img {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            text-align: center;
+            width: 120px;
+            height: 120px;
+        }
+
+        .passport img {
+            width: 120px;
+            height: 120px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+            text-decoration: underline;
+        }
+
+        .details, .grades, .official-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .details td, .grades td, .official-table td, .official-table th {
+            border: 1px solid #000;
+            padding: 8px;
+        }
+
+        .grades th, .official-table th {
+            background-color: #f2f2f2;
+            text-align: center;
+        }
+
+        .official-table th {
+            background-color: #d9edf7;
+        }
+
+        .official-table td {
+            text-align: center;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #555;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>GIAL College of Health</h1>
+            <h2>Entrance Examination Slip</h2>
+            <h5>Application No.:{{ prefix }}{{ form.id }} </h5>
+        </div>
+        <!-- Passport Photo -->
+        <div class="passport">
+            <img src="{{ img.passport.url }}" >
+           </div>
+        <div class="logo">
+            <img src="{% static 'image/logo.jpg' %}" alt="logo">
+           </div>
+<div style=" background-position: center; background-size:60%; background-repeat: no-repeat; background-image: url('{% static "./image/logo.jpg" %}');">
+        <!-- Personal Details -->
+        <div >
+            <p class="section-title">Personal Details</p>
+            <table class="details">
+                <tr>
+                    <td><strong>Name:</strong> {{ form.name }}</td>
+                    <td><strong>Address:</strong> {{ form.address }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Phone Number:</strong> {{ form.phone }}</td>
+                    <td><strong>Gender:</strong> {{ form.gender }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Marital Status:</strong> {{ form.marital }}</td>
+                    <td><strong>Course Applied:</strong> {{ form.courseName }}</td>
+                </tr>
+
+            </table>
+        </div>
+
+        <!-- Academic Details -->
+        <div>
+            <p class="section-title">Academic Details</p>
+            <table class="details">
+                <tr>
+                    <td><strong>Primary School Name:</strong> {{ form.primaryName }}</td>
+                    <td><strong>Date Completed:</strong> {{ form.pcompletionYear }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Secondary School Name:</strong> {{ form.secondaryName }}</td>
+                    <td><strong>Date Completed:</strong> {{ form.scompletionYear }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Exam Type:</strong> {{ form.examType }}</td>
+                    <td><strong>Exam Year:</strong> {{ form.examYear }}</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Grades -->
+        <div>
+            <p class="section-title">Grades</p>
+            <table class="grades">
+                <tr>
+                    <th>Subject</th>
+                    <th>Score</th>
+                </tr>
+                <tr>
+                    <td>English</td>
+                    <td>{{ form.english }}</td>
+                </tr>
+                <tr>
+                    <td>Chemistry</td>
+                    <td>{{ form.chemistry }}</td>
+                </tr>
+                <tr>
+                    <td>Biology</td>
+                    <td>{{ form.biology }}</td>
+                </tr>
+                <tr>
+                    <td>Mathematics</td>
+                    <td>{{ form.mathematics }}</td>
+                </tr>
+                <tr>
+                    <td>Physics</td>
+                    <td>{{ form.physics }}</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Official Use Table -->
+        <div>
+            <p class="section-title">For Official Use</p>
+            <table class="official-table">
+                <tr>
+                    <th>Entrance Score</th>
+                    <th>Interview Score</th>
+                    <th>Total</th>
+                    <th>Course Applied</th>
+                    <th>Course Given</th>
+                </tr>
+                <tr>
+                    <td> <br></td>
+                    <td><br></td>
+                    <td><br></td>
+                    <td><br></td>
+                    <td><br></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+        <!-- Footer -->
+        <div class="footer">
+            <p>GIAL College of Health - Entrance Examination System</p>
+        </div>
+    </div>
+</body>
+</html>
