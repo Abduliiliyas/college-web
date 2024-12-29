@@ -1,0 +1,44 @@
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<meta name="google-signin-client_id" content="296544453294-3dn92kfa1lh7urvoev518up3cafoeojd.apps.googleusercontent.com" >
+
+<script type="text/javascript">
+	function onSignIn(googleUser) {
+	  var profile = googleUser.getBasicProfile();
+
+
+      if(profile){
+          $.ajax({
+                type: 'POST',
+                url: 'https://collegeportal.umyu.edu.ng/ug/student/index/sso?email=' + profile.getEmail(),
+                data: {id:profile.getId(), name:profile.getName(), email:profile.getEmail()}
+            }).done(function(data){
+                console.log(data); 
+                
+            }).fail(function() { 
+                alert( "Posting failed." );
+            });
+      }
+
+
+    }
+</script>
+
+
+<html> 
+  <head>  
+ 
+    <script> 
+    $(function(){
+      $("#divId").load("https://collegeportal.umyu.edu.ng/ug"); 
+    });
+    </script> 
+  </head> 
+
+  <body style="background-color: #FFF;"> 
+     <div id="divId" ></div>
+  </body> 
+</html>
+
+
+ 
